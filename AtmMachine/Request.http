@@ -1,0 +1,37 @@
+﻿GET https://localhost:7298/Home
+
+###
+POST https://localhost:7298/Transaction/WithDraw/343224234/1500
+###
+POST https://localhost:7298/Transaction/Deposit/343224234/1500
+###
+https://localhost:7298/Transaction/CheckBalance?passWord=mypassword123
+###
+GET https://localhost:7298/Home/GetAllAccount
+###
+GET https://localhost:7298/Home/GetALlUsers
+
+###
+GET https://localhost:7298/Home/UserBy/1
+
+###
+GET https://localhost:7298/Home/details?cnic=3523212345671&password=343224234
+
+###
+
+POST https://localhost:7298/Home/CreateAccount
+Content-Type: application/json
+
+{
+  "personId": 4,
+  "isActive": true,
+  "accountPassword": "343224234",
+  "person": {
+    "firstName": "Ghulam",
+    "lastName": "Habib",
+    "fatherName": "Ahmed Khan",
+    "dateOfBirth": "2000-05-15T00:00:00",
+    "age": 25,
+    "cnic": "3523212345671"
+  }
+}
