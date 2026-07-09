@@ -137,3 +137,4 @@ D:\Programming\backend\EF\AtmMachine\AtmMachine\obj\Debug\net8.0\AtmMachine.pdb
 D:\Programming\backend\EF\AtmMachine\AtmMachine\obj\Debug\net8.0\AtmMachine.genruntimeconfig.cache
 D:\Programming\backend\EF\AtmMachine\AtmMachine\obj\Debug\net8.0\ref\AtmMachine.dll
 D:\Programming\backend\EF\AtmMachine\AtmMachine\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\Programming\backend\EF\AtmMachine\AtmMachine\obj\Debug\net8.0\AtmMachine.sourcelink.json

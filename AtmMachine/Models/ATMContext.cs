@@ -29,13 +29,31 @@ namespace AtmMachine.Models
         public DbSet<ATM> ATMs { get; set; }
         public DbSet<UserName> UserNames { get; set; }
         public DbSet<UserResult> UserResults { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+        public DbSet<TransactionTransfer> TransactionTransfer { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserName>()
                 .HasNoKey()
                 .ToView("PersonView");
-
-
+            modelBuilder.Entity<Account>()
+                .HasMany(a => a.Transactions)
+                .WithOne(t => t.Account)
+                .HasForeignKey(t => t.AccountId);
+            modelBuilder.Entity<Transactions>()
+                .HasOne(t => t.Account)
+                .WithMany(a => a.Transactions)
+                .HasForeignKey(t => t.AccountId);
+            modelBuilder.Entity<TransactionTransfer>()
+                .HasOne(t=>t.SenderAccount)
+                .WithMany()
+                .HasForeignKey(s => s.SenderAccountId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<TransactionTransfer>()
+              .HasOne(r => r.ReceiverAccount)
+              .WithMany()
+              .HasForeignKey(r => r.ReceiverAccountId)
+              .OnDelete(DeleteBehavior.Restrict);
         }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

@@ -191,6 +191,32 @@
   },
   {
     "ContainingType": "AtmMachine.Controllers.TransationContoller",
+    "Method": "TransferMoney",
+    "RelativePath": "Transaction/Transfer/{password}/{receiverCnic}/{amount}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "receiverCnic",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "amount",
+        "Type": "System.Double",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AtmMachine.Controllers.TransationContoller",
     "Method": "WithDraw",
     "RelativePath": "Transaction/WithDraw/{password}/{amount}",
     "HttpMethod": "POST",

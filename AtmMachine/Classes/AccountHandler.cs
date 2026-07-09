@@ -1,4 +1,6 @@
 ﻿using System.CodeDom;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AtmMachine.Classes
 {
@@ -27,6 +29,17 @@ namespace AtmMachine.Classes
                 return false;
             }
             return true;
+        }
+        public static string GenerateRandomTransactionNumber(int len = 10)
+        {
+            StringBuilder sb = new StringBuilder(len);
+
+            for (int i = 0; i < len; i++)
+            {
+                sb.Append(RandomNumberGenerator.GetInt32(10));
+            }
+
+            return sb.ToString();
         }
 
     }

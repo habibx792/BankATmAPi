@@ -11,9 +11,11 @@ namespace AtmMachine.Models
 
         public double Balance { get; set; } = 0;
 
+
         public bool IsActive { get; set; } = true;
 
         public string AccountPassword { get; set; }
+        public List<Transactions> Transactions { get; set; } = new();
 
 
         public void UpdateBalance(double amount)
@@ -39,9 +41,17 @@ namespace AtmMachine.Models
             }
             return false;
         }
-       
+        public bool TranserferMoney(double amount, Account account)
+        {
+            if (amount > 0 && amount <= Balance)
+            {
 
-        
+                this.Balance -= amount;
+                account.Balance += amount;
+                return true;
+            }
+            return false;
+        }
         public bool SetPassword(string password)
         {
             if (AccountHandler.isValidPassword(password))

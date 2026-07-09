@@ -1,6 +1,8 @@
 ﻿GET https://localhost:7298/Home
 
 ###
+POST https://localhost:7298/Transaction/Transfer/343224234/3926212545641/1200
+###
 POST https://localhost:7298/Transaction/WithDraw/343224234/1500
 ###
 POST https://localhost:7298/Transaction/Deposit/343224234/1500
@@ -32,6 +34,6 @@ Content-Type: application/json
     "fatherName": "Ahmed Khan",
     "dateOfBirth": "2000-05-15T00:00:00",
     "age": 25,
-    "cnic": "3523212345671"
+    "cnic": "3926212545641"
   }
 }
