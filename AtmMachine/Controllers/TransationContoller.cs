@@ -51,6 +51,15 @@ namespace AtmMachine.Controllers
             
             if (!success)
                 return BadRequest("Insufficient balance.");
+            var transaction = new TransactionTransfer
+            {
+                ReceiverAccount = receiver,
+                SenderAccount = sender,
+                AccountId = sender.Id,
+                AccountBalance=sender.Balance,
+                IsSuccessfull = true
+            };
+            await context.Transactions.AddAsync(transaction);
 
             await context.SaveChangesAsync();
            
@@ -59,7 +68,8 @@ namespace AtmMachine.Controllers
             {
                 Message = $"Transferred {amount} successfully.",
                 Receiver = receiver.Person.FirstName + " " + receiver.Person.LastName,
-                CurrentBalance = sender.Balance
+                CurrentBalance = sender.Balance,
+                transactionId=transaction.TransactionId
             });
         }
         [HttpPost("WithDraw/{password}/{amount}")]
@@ -75,7 +85,20 @@ namespace AtmMachine.Controllers
             if (withDrawSuccess)
             {
                 await context.SaveChangesAsync();
-                return Ok(new { message = "With Successfully ", New_Balance = account.Balance });
+                Transactions transaction = new Transactions
+                {
+                    Account = account,
+                    AccountId = account.Id,
+                    AccountBalance = account.Balance,
+                    IsSuccessfull = true
+                };
+                await context.Transactions.AddAsync(transaction);
+                return Ok(new {
+                    message = "With Successfully ",
+                    New_Balance = account.Balance,
+                    transactionId = transaction.TransactionId
+
+                });
             }
             return BadRequest(new { message = "DithDraw amount Must Be Great Than Zero" });
         }
